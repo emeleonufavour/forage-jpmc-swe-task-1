@@ -1,5 +1,5 @@
 import unittest
-from client3 import getDataPoint
+from client3 import getDataPoint, getRatio
 
 
 class ClientTest(unittest.TestCase):
@@ -30,6 +30,12 @@ class ClientTest(unittest.TestCase):
         for quote in quotes:
             self.assertEqual(getDataPoint(
                 quote), (quote['stock'], quote['top_bid']['price'], (quote['top_ask']['price']+quote['top_bid']['price'])/2))
+
+    def test_get_ration(self):
+        """Tests the ratio calculation function in getDataPoint()"""
+        price_a = 1
+        price_b = 2
+        self.assertEqual(getRatio(price_a=price_a, price_b=price_b), 1/2)
 
 
 if __name__ == '__main__':
